@@ -4,7 +4,7 @@ WORKDIR /src
 
 COPY main*.go go.* ./
 
-RUN go build -o /bin/helloapp
+RUN CGO_ENABLED=0 go build -o /bin/helloapp
 
 FROM scratch
 COPY --from=build /bin/helloapp /bin/helloapp
