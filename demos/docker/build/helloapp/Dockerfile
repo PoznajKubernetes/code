@@ -1,3 +1,4 @@
+# DO NOT USE IT IN PRODUCTION
 FROM golang:latest 
 
 # sets working dir and creates it if does not exists
