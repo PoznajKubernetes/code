@@ -1,0 +1,17 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY package*.json ./
+# removed
+RUN npm config set registry http://registry.npmjs.org/
+RUN npm install
+# added
+RUN npm config set registry http://registry.npmjs.org/ \
+    && npm install
+
+COPY . .
+COPY index.js ./
+
+EXPOSE 8080
+CMD [ "node", "index.js" ]

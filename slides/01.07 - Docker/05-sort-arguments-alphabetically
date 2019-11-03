@@ -1,0 +1,16 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY package*.json ./
+# adding express and socket.io installation just
+# to show what this points is about
+RUN npm config set registry http://registry.npmjs.org/ \
+    && npm install \
+		express \
+		socket.io
+		
+COPY index.js ./
+
+EXPOSE 8080
+CMD [ "node", "index.js" ]

@@ -1,0 +1,14 @@
+{
+  "name": "pk-express-docker-demo",
+  "version": "1.0.0",
+  "description": "Sample application to show how Dockerfile works",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Poznaj Kubernetes",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

@@ -1,0 +1,15 @@
+FROM node:latest
+
+WORKDIR /app
+
+COPY package*.json ./
+# adding no-optional flag to npm
+# that does not install optional
+# packages
+RUN npm config set registry http://registry.npmjs.org/ \
+    && npm install --no-optional
+		
+COPY index.js ./
+
+EXPOSE 8080
+CMD [ "node", "index.js" ]
