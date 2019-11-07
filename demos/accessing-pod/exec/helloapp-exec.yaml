@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: helloapp-exec
+spec:
+ containers:
+# THIS IS DEMO!!! CAUTION!!!
+ - image: poznajkubernetes/kuard
+   name: kuard
+ - image: poznajkubernetes/helloapp:8888
+   name: helloapp
+ - image: busybox
+   name: bb
