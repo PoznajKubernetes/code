@@ -1,11 +1,12 @@
 apiVersion: v1
 kind: Pod
 metadata:
- name: helloapp-exec
+ name: helloapp-pf
 spec:
  containers:
 # THIS IS DEMO!!! CAUTION!!!
  - image: poznajkubernetes/kuard
    name: kuard
+# Czesc, STATEK, multistage build, FROM scratch!!!!
  - image: poznajkubernetes/helloapp:8888 
    name: helloapp
