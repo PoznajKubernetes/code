@@ -9,3 +9,5 @@ spec:
    name: kuard
  - image: poznajkubernetes/pkad
    name: pkad
+ - image: busybox
+   name: bb
