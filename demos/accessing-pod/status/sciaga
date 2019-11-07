@@ -1,0 +1,17 @@
+PodStatus (phase):
+    Pending - nie jest jeszcze utworzony
+    Running - utworzony, chodzi
+    Succeeded - wszystkie kontenery zakonczyly prace OK
+    Failed - chociaz jeden kontenter sie wywalil
+    Unknown - nie mozemy dostac statusu Pod
+
+
+Conatainters State - patrz na reason:
+    Waiting - nie jest jesze uruchomiony
+    Running - jest uruchomiony
+    Terminated - zakonczyl dzialanie
+
+
+Conditions - conditions jakie spelnia Pod:
+    True - spelnia
+    False - nie spelnia

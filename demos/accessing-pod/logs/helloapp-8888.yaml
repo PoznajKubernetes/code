@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+ name: helloappm
+spec:
+ containers:
+ - image: poznajkubernetes/helloapp:multi 
+   name: helloapp
+ - image: poznajkubernetes/kuard
+   name: kuard
