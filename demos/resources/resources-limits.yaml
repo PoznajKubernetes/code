@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkad
+spec:
+  restartPolicy: Never
+  containers:
+  - name: pkad
+    image: poznajkubernetes/pkad:blue
+    resources:
+      requests:
+        cpu: 0.1
+        memory: 400Mi
+      limits:
+        cpu: 0.1
+        memory: 400Mi
+    ports:
+    - containerPort: 8080
