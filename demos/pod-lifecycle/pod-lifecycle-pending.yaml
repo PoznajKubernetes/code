@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle
+  labels:
+    name: lifecycle
+spec:
+  restartPolicy: Never
+  containers:
+  - name: main
+    image: busybox
+    command: ['sh', '-c', 'echo $(date +%s): START >> /loap/timing.txt; sleep 30; echo $(date +%s): END >> /loap/timing.txt;']
+    volumeMounts:
+    - mountPath: /loap
+      name: timing
+    resources:
+        requests:
+          cpu: 4.0
+          memory: 4Gi
+  volumes:
+  - name: timing
+    hostPath:
+      path: /c/temp/

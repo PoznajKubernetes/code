@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: lifecycle
+  labels:
+    name: lifecycle
+spec:
+  initContainers:
+  - name: init
+    image: busybox
+    command: ['sh', '-c', 'echo $(date +%s): INIT >> /loap/timing.txt']
+    volumeMounts:
+    - mountPath: /loap
+      name: timing
+  containers:
+  - name: main
+    image: busybox
+    command: ['sh', '-c', 'echo $(date +%s): START >> /loap/timing.txt; sleep 30; echo $(date +%s): END >> /loap/timing.txt;']
+    volumeMounts:
+    - mountPath: /loap
+      name: timing
+    livenessProbe:
+      exec:
+        command: ['sh', '-c', 'echo $(date +%s): LIVENESS >> /loap/timing.txt']
+    readinessProbe:
+      exec:
+        command: ['sh', '-c', 'echo $(date +%s): READINESS >> /loap/timing.txt']
+    lifecycle:
+      postStart:
+        exec:
+          command: ['sh', '-c', 'echo $(date +%s): POST-START >> /loap/timing.txt']
+      preStop:
+        exec:
+          command: ['sh', '-c', 'echo $(date +%s): PRE-STOP >> /loap/timing.txt']
+  volumes:
+  - name: timing
+    hostPath:
+      path: /c/temp/
