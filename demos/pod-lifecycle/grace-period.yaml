@@ -1,0 +1,22 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: grace-period
+  labels:
+    name: grace-period
+spec:
+  containers:
+  - name: main
+    image: busybox
+    command: ['sh', '-c', 'while true; do echo $(date +%s): BEEP >> /loap/timing.txt; sleep 5; done;']
+    volumeMounts:
+    - mountPath: /loap
+      name: timing
+    lifecycle:
+      preStop:
+        exec:
+          command: ['sh', '-c', 'echo $(date +%s): SIG_TERM >> /loap/timing.txt']
+  volumes:
+  - name: timing
+    hostPath:
+      path: /c/temp/
