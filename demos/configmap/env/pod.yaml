@@ -8,6 +8,9 @@ spec:
   containers:
   - name: pkad
     image: poznajkubernetes/pkad
+    env:
+    - name: TEST
+      value: Poznaj Kubernetes
     resources:
       limits:
         memory: "128Mi"
