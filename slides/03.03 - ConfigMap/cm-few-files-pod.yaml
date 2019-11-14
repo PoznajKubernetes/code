@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pkpod
+spec:
+  containers: 
+  - name: pkct
+    image: poznajkubernetes/pkad
+    volumeMounts:
+    - mountPath: /config/
+      name: sample-volume
+      readOnly: true
+  volumes:
+  - name: sample-volume
+    configMap:
+      name: sample-cm
+      items:
+      - key: xyz
+        path: config.toml

@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pkpod
+spec:
+  containers: 
+  - name: pkct
+    image: poznajkubernetes/pkad
+    envFrom:
+    - configMapRef:
+        name: pkcm
+

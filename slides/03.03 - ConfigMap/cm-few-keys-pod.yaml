@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: pkpod
+spec:
+  containers: 
+  - name: pkct
+    image: poznajkubernetes/pkad
+    env:
+    - name: ENVIRONMENT
+      valueFrom:
+         configMapKeyRef:
+           name: pkcm
+           key: app-env
+    - name: UPLOAD_PATH
+      valueFrom:
+         configMapKeyRef:
+           name: pkcm
+           key: upload-dir

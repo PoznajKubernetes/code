@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: pkcm
+  labels:
+    app: poznajkubernetes 
+data:
+  a: b
+  c: d
+  file.txt: |
+    file content
