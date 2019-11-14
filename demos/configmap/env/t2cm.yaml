@@ -4,4 +4,4 @@ data:
   T2_KEY_1: value_02
 kind: ConfigMap
 metadata:
-  name: t1cm
+  name: t2cm
