@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  klucz1: wartosc1
+  klucz2: wartosc2
+kind: ConfigMap
+metadata:
+  name: t1cm

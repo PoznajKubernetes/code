@@ -1,0 +1,15 @@
+apiVersion: v1
+data:
+  a: b
+  config.toml: "# TOML... if it looks familiar, you're that old ;)\r\n# history loves
+    to repeat ;)\r\n\r\ntitle = \"TOML Example\"\r\n\r\n[owner]\r\nname = \"Tom Preston-Werner\"\r\ndob
+    = 1979-05-27T07:32:00-08:00 # First class dates\r\n\r\n[database]\r\nserver =
+    \"192.168.1.1\"\r\nports = [ 8001, 8001, 8002 ]\r\nconnection_max = 5000\r\nenabled
+    = true\r\n\r\n[servers]\r\n\r\n  # Indentation (tabs and/or spaces) is allowed
+    but not required\r\n  [servers.alpha]\r\n  ip = \"10.0.0.1\"\r\n  dc = \"eqdc10\"\r\n\r\n
+    \ [servers.beta]\r\n  ip = \"10.0.0.2\"\r\n  dc = \"eqdc10\"\r\n\r\n[clients]\r\ndata
+    = [ [\"gamma\", \"delta\"], [1, 2] ]\r\n\r\n# Line breaks are OK when inside arrays\r\nhosts
+    = [\r\n  \"alpha\",\r\n  \"omega\"\r\n]"
+kind: ConfigMap
+metadata:
+  name: t3cm
