@@ -1,0 +1,7 @@
+apiVersion: v1
+data:
+  T2_KEY_1: value_01
+  T2_KEY_1: value_02
+kind: ConfigMap
+metadata:
+  name: t1cm
