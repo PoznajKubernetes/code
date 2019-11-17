@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-private-registry
+  labels:
+    name: demo-private-registry
+spec:
+  containers:
+  - name: demo-private-registry
+    image: poznajkubernetes.azurecr.io/pkad/pkad-private:blue
+    resources: {}
+    ports:
+      - containerPort: 8080
+  imagePullSecrets:
+    - name: regcred
