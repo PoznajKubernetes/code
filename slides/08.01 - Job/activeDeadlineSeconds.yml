@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-timeout
+spec:
+  backoffLimit: 5
+  activeDeadlineSeconds: 100
+  template:
+    metadata:
+      name: run-timeout
+    spec:
+      containers:
+      - name: run-timeout
+        image: busybox:latest
+        command: ["/bin/bash","-c","touch /foo && echo 'here' && ls /"]
+      restartPolicy: OnFailure

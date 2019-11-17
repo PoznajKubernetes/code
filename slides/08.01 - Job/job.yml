@@ -1,0 +1,16 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-once
+spec:
+  template:
+    metadata:
+      name: run-once
+    spec:
+      containers:
+      - name: run-once
+        image: busybox
+        args:
+          - "echo"
+          - "poznaj"
+      restartPolicy: OnFailure

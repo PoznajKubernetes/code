@@ -1,0 +1,18 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-queue
+spec:
+  completions: 9
+  parallelism: 3
+  template:
+    metadata:
+      name: run-queue
+    spec:
+      containers:
+      - name: run-queue
+        image: busybox
+        args:
+          - "echo"
+          - "poznaj"
+      restartPolicy: OnFailure

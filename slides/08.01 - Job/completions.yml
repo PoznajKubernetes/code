@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: run-five
+spec:
+  completions: 5
+  template:
+    metadata:
+      name: run-five
+    spec:
+      containers:
+      - name: run-five
+        image: busybox
+        args:
+          - "echo"
+          - "poznaj"
+      restartPolicy: OnFailure
