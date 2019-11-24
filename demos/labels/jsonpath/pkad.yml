@@ -3,6 +3,7 @@ kind: Pod
 metadata:
   name: pkad
 spec:
+  terminationGracePeriodSeconds: 45
   containers:
   - name: pkad
     image: poznajkubernetes/pkad
