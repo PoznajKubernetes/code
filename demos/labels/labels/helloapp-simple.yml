@@ -1,0 +1,16 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloapp-simple
+  labels:
+    name: helloapp-simple
+spec:
+  containers:
+  - name: helloapp-simple
+    image: poznajkubernetes/helloapp:multi
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080

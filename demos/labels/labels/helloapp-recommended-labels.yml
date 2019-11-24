@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: helloapp-fullset
+  labels:
+    app.kubernetes.io/name: helloapp
+    app.kubernetes.io/instance: helloapp-fullset # A unique name identifying the instance of an application
+    app.kubernetes.io/version: "1.0.0"           # The current version of the applicatio
+    app.kubernetes.io/component: ui              # The component within the architecture
+    app.kubernetes.io/part-of: pkad              # The name of a higher level application this one is part of
+    app.kubernetes.io/managed-by: azuredevops    # The tool being used to manage the operation of an application
+spec:
+  containers:
+  - name: helloapp-fullset
+    image: poznajkubernetes/helloapp:multi
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
