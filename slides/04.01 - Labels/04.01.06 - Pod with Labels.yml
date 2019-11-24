@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: kuard
+  labels:
+    app: ui
+    env: stg
+spec:
+ containers:
+ - image: poznajkubernetes/kuard
+   name: kuard
