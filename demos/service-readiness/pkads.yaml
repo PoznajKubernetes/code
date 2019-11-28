@@ -19,13 +19,13 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: pkad-01
+  name: pkad-02
   labels:
-    name: pkad-01
+    name: pkad-02
     app: pkad
 spec:
   containers:
-  - name: pkad-01
+  - name: pkad-02
     image: poznajkubernetes/pkad
     resources:
       limits:
