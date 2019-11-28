@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkad-02
+  labels:
+    name: pkad-02
+    app: pkad
+spec:
+  containers:
+  - name: pkad-02
+    image: poznajkubernetes/pkad
+    livenessProbe:
+      httpGet:
+        path: /healthy
+        port: pkad-02
+      initialDelaySeconds: 3
+      periodSeconds: 3
+    readinessProbe:
+      httpGet:
+        path: /ready
+        port: pkad-02
+      initialDelaySeconds: 3
+      periodSeconds: 3
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - name: pkad-02
+        containerPort: 8080
