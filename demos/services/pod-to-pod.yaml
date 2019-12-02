@@ -17,9 +17,9 @@ spec:
 apiVersion: v1
 kind: Pod
 metadata:
-  name: helloapp
+  name: tools
   labels:
-    app: helloapp
+    app: tools
 spec:
   containers:
   - name: tools
