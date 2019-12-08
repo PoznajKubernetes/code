@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: helloapp-nbvh-pkad-svc
+  name: helloapp-nbvh-dumpster-svc
 spec:
   selector:
-    app: helloapp-nbvh-pkad-dep
+    app: helloapp-nbvh-dumpster-dep
   ports:
   - port: 8080
     targetPort: 8080
@@ -12,19 +12,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: helloapp-nbvh-pkad-dep
+  name: helloapp-nbvh-dumpster-dep
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: helloapp-nbvh-pkad-dep
+      app: helloapp-nbvh-dumpster-dep
   template:
     metadata:
       labels:
-        app: helloapp-nbvh-pkad-dep
+        app: helloapp-nbvh-dumpster-dep
     spec:
       containers:
-      - name: helloapp-nbvh-pkad-dep
-        image: poznajkubernetes/helloapp:svc
+      - name: helloapp-nbvh-dumpster-dep
+        image: gutek/dumpster:v1
         ports:
         - containerPort: 8080

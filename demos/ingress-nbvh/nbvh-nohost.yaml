@@ -25,6 +25,6 @@ spec:
     spec:
       containers:
       - name: helloapp-nbvh-nohost-dep
-        image: poznajkubernetes/helloapp:svc
+        image: poznajkubernetes/helloapp:multi
         ports:
         - containerPort: 8080
