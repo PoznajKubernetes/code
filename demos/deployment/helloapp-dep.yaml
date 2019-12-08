@@ -15,5 +15,13 @@ spec:
       containers:
       - name: helloapp-dep
         image: poznajkubernetes/helloapp:svc
+        livenessProbe:
+          httpGet:
+            path: /
+            port: 8080
+        readinessProbe:
+          httpGet:
+            path: /
+            port: 8080
         ports:
         - containerPort: 8080

@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: helloapp-dep
 spec:
-  replicas: 2
   selector:
     matchLabels:
       app: helloapp-dep
