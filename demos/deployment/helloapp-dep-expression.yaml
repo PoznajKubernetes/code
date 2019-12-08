@@ -9,7 +9,7 @@ spec:
       - key: env
         operator: NotIn
         values:
-          - tst
+          - prod
       - key: pk
         operator: Exists
       - { key: app, operator: In, values: [ helloapp-dep-expression ] }
