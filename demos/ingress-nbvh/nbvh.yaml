@@ -7,13 +7,13 @@ metadata:
     nginx.ingress.kubernetes.io/rewrite-target: /$1
 spec:
   rules:
-  - host: bug.137.135.207.144.nip.io
+  - host: bug.127.0.0.1.nip.io
     http:
       paths:
       - backend:
           serviceName:  helloapp-nbvh-nohost-svc
           servicePort: 8080
-  - host: demo.137.135.207.144.nip.io
+  - host: demo.127.0.0.1.nip.io
     http:
       paths:
       - path: /host/?(.*)
@@ -25,5 +25,5 @@ spec:
           serviceName: helloapp-nbvh-echo-svc
           servicePort: 8080
       - backend:
-          serviceName:  helloapp-nbvh-pkad-svc
+          serviceName:  helloapp-nbvh-dumpster-svc
           servicePort: 8080
