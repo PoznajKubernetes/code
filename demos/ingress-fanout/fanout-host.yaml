@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloapp-fanout-host-svc
+spec:
+  selector:
+    app: helloapp-fanout-host-dep
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloapp-fanout-host-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloapp-fanout-host-dep
+  template:
+    metadata:
+      labels:
+        app: helloapp-fanout-host-dep
+    spec:
+      containers:
+      - name: helloapp-fanout-host-dep
+        image: poznajkubernetes/helloapp:svc
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8080

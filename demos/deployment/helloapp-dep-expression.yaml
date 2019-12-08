@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloapp-dep-expression
+spec:
+  replicas: 2
+  selector:
+    matchExpressions:
+      - key: env
+        operator: NotIn
+        values:
+          - tst
+      - { key: app, operator: In, values: [ helloapp-dep-expression ] }
+  template:
+    metadata:
+      labels:
+        app: helloapp-dep-expression
+        env: tst
+    spec:
+      containers:
+      - name: helloapp-dep-expression
+        image: poznajkubernetes/helloapp:svc
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080

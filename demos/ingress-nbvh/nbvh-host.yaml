@@ -1,0 +1,34 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: helloapp-nbvh-host-svc
+spec:
+  selector:
+    app: helloapp-nbvh-host-dep
+  ports:
+  - port: 80
+    targetPort: 8080
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloapp-nbvh-host-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloapp-nbvh-host-dep
+  template:
+    metadata:
+      labels:
+        app: helloapp-nbvh-host-dep
+    spec:
+      containers:
+      - name: helloapp-nbvh-host-dep
+        image: poznajkubernetes/helloapp:svc
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        ports:
+        - containerPort: 8080

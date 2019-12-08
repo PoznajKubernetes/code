@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: helloapp-dep
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: helloapp-dep
+  template:
+    metadata:
+      labels:
+        app: helloapp-dep
+    spec:
+      containers:
+      - name: helloapp-dep
+        image: poznajkubernetes/helloapp:svc
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 8080
