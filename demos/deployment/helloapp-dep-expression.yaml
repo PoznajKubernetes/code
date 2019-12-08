@@ -10,12 +10,15 @@ spec:
         operator: NotIn
         values:
           - tst
+      - key: pk
+        operator: Exists
       - { key: app, operator: In, values: [ helloapp-dep-expression ] }
   template:
     metadata:
       labels:
         app: helloapp-dep-expression
         env: tst
+        pk: "true"
     spec:
       containers:
       - name: helloapp-dep-expression
