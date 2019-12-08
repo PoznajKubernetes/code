@@ -26,9 +26,5 @@ spec:
       containers:
       - name: helloapp-fanout-host-dep
         image: poznajkubernetes/helloapp:svc
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "200m"
         ports:
         - containerPort: 8080

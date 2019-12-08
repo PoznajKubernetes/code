@@ -15,9 +15,5 @@ spec:
       containers:
       - name: helloapp-dep
         image: poznajkubernetes/helloapp:svc
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "500m"
         ports:
         - containerPort: 8080

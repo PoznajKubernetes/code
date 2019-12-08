@@ -26,9 +26,5 @@ spec:
       containers:
       - name: helloapp-nbvh-echo-dep
         image: gcr.io/google_containers/echoserver:1.4
-        resources:
-          limits:
-            memory: "128Mi"
-            cpu: "200m"
         ports:
         - containerPort: 8080
