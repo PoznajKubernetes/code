@@ -1,0 +1,11 @@
+- type: Object
+  object:
+    metric:
+      name: requests-per-second
+    describedObject:
+      apiVersion: networking.k8s.io/v1beta1
+      kind: Ingress
+      name: main-route
+    target:
+      kind: Value
+      value: 10k
