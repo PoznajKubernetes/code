@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pkad
+spec:
+  replicas: 3
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      app: pkad
+  template:
+    metadata:
+      labels:
+        app: pkad
+    spec:
+      containers:
+      - name: pkad
+        image: poznajkubernetes/pkad:blue
+        resources: {}
+        ports:
+        - containerPort: 8080
+        env:
+        - name: version
+          value: v1
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 20
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
