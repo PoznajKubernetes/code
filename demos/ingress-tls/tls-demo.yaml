@@ -1,0 +1,50 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pk
+spec:
+  selector:
+    matchLabels:
+      app: pk
+  template:
+    metadata:
+      labels:
+        app: pk
+    spec:
+      containers:
+      - name: demo
+        image: poznajkubernetes/pkad:blue
+        resources: {}
+        ports:
+        - containerPort: 8080
+          name: http
+---
+kind: Service
+apiVersion: v1
+metadata:
+  name: pk
+spec:
+  selector:
+    app: pk
+  type: ClusterIP
+  ports:
+  - name: http
+    port: 80
+    targetPort: http
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: pk
+spec:
+  tls:
+  - hosts:
+    - localhost
+    secretName: tls-localhost
+  rules:
+    - host: localhost
+      http:
+        paths:
+        - backend:
+            serviceName: pk
+            servicePort: 80
