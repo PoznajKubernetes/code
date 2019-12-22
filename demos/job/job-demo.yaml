@@ -1,0 +1,23 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  creationTimestamp: null
+  name: job-demo
+spec:
+  #activeDeadlineSeconds: 30
+  #completions: 5
+  #parallelism: 3
+  template:
+    metadata:
+      creationTimestamp: null
+    spec:
+      containers:
+      - image: busybox
+        name: job-demo
+        resources: {}
+        command:
+        - /bin/sh
+        - -c
+        - while [[ "$(wget --server-response --spider --quiet "http://workqueue.getsandbox.com/${HOSTNAME}" 2>&1 | awk 'NR==1{print $2}')" != "200" ]]; do echo "waiting" & sleep 15; done
+      restartPolicy: Never
+status: {}
