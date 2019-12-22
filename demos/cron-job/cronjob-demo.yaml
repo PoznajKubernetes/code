@@ -1,0 +1,27 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  creationTimestamp: null
+  name: cronjob-demo
+spec:
+  successfulJobsHistoryLimit: 2
+  jobTemplate:
+    metadata:
+      creationTimestamp: null
+      name: cronjob-demo
+    spec:
+      template:
+        metadata:
+          creationTimestamp: null
+        spec:
+          containers:
+          - image: busybox
+            name: cronjob-demo
+            resources: {}
+            command:
+            - /bin/sh
+            - -c
+            - while [[ "$(wget --server-response --spider --quiet "http://workqueue.getsandbox.com/${HOSTNAME}" 2>&1 | awk 'NR==1{print $2}')" != "200" ]]; do echo "waiting" & sleep 15; done
+          restartPolicy: OnFailure
+  schedule: "*/1 * * * *"
+status: {}
