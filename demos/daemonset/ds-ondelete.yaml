@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: pkad-ds
+spec:
+  updateStrategy:
+    type: OnDelete
+  selector:
+    matchLabels:
+      name: pkad-ds
+  template:
+    metadata:
+      labels:
+        name: pkad-ds
+    spec:
+      containers:
+      - name: pkad-ds
+        image: poznajkubernetes/pkad:blue
+        resources: {}
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 20
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3

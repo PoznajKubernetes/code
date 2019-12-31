@@ -1,0 +1,8 @@
+# Lista wprowadzonych aktualizacji
+kubectl rollout history daemonset <daemonset-name>
+
+# Szczegóły konkretnej wersji
+kubectl rollout history daemonset <daemonset-name> --revision=1
+
+# Przywrócenie do konkretnej wersji
+kubectl rollout undo daemonset <daemonset-name> --to-revision=<revision>
