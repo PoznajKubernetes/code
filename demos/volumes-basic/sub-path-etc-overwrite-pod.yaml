@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: subpath-overwrite-pod
+  labels:
+    name: subpath-overwrite-pod
+spec:
+  volumes:
+  - name: empty
+    hostPath:
+      path: '/e/tools'
+  containers:
+  - name: subpath-overwrite-pod-pkad
+    image: poznajkubernetes/pkad
+    volumeMounts:
+    - name: empty
+      mountPath: /etc
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
