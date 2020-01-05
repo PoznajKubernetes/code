@@ -12,6 +12,7 @@ spec:
   containers:
   - name: host-path-pod-bb
     image: busybox
+    command: ['sh', '-c', 'echo running! && sleep 3600']
     volumeMounts:
     - name: host-path
       mountPath: /pod-empty/
