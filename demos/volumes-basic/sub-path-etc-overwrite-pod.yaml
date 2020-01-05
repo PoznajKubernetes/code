@@ -1,4 +1,12 @@
 apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: subpath-overwrite-cm
+data:
+  appsettings.json: "our config"
+  demo: "this WILL BE created"
+---
+apiVersion: v1
 kind: Pod
 metadata:
   name: subpath-overwrite-pod
@@ -6,14 +14,14 @@ metadata:
     name: subpath-overwrite-pod
 spec:
   volumes:
-  - name: empty
-    hostPath:
-      path: '/e/tools'
+  - name: cm
+    configMap:
+      name: subpath-overwrite-cm
   containers:
   - name: subpath-overwrite-pod-pkad
     image: poznajkubernetes/pkad
     volumeMounts:
-    - name: empty
+    - name: cm
       mountPath: /etc
     resources:
       limits:

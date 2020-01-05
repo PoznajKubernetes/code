@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: pk-retain-pv
+spec:
+  storageClassName: ""
+  persistentVolumeReclaimPolicy: Retain
+  capacity:
+    storage: 10Mi
+  accessModes:
+  - ReadWriteOnce
+  hostPath:
+    path: "/mnt/c/poznajkubernetes/volumes/retain"
