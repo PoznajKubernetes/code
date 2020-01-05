@@ -10,4 +10,4 @@ spec:
   accessModes:
   - ReadWriteOnce
   hostPath:
-    path: "/mnt/c/poznajkubernetes/volumes/recycle"
+    path: "/c/poznajkubernetes/volumes/recycle"

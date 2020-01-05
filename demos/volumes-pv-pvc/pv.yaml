@@ -15,4 +15,4 @@ spec:
   # only one access mode will be used and once used
   # it will not be available for mount.
   hostPath:
-    path: "/mnt/c/poznajkubernetes/volumes/host-path"
+    path: "/c/poznajkubernetes/volumes/host-path"
