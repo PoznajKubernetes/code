@@ -10,7 +10,8 @@ spec:
     emptyDir: {}
   containers:
   - name: empty-pod-bb
-    image: buxybox
+    image: busybox
+    command: ['sh', '-c', 'echo running! && sleep 3600']
     volumeMounts:
     - name: empty
       mountPath: /pod-empty/
