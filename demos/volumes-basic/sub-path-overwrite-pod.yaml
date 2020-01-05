@@ -22,7 +22,7 @@ spec:
     image: poznajkubernetes/pkad
     volumeMounts:
     - name: cm
-      mountPath: /etc
+      mountPath: /usr/bin
     resources:
       limits:
         memory: "128Mi"

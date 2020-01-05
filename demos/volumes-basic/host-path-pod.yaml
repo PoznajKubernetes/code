@@ -8,7 +8,7 @@ spec:
   volumes:
   - name: host-path
     hostPath:
-      path: /mnt/c/poznajkubernetes/volumes/host-path
+      path: /c/poznajkubernetes/volumes/host-path
   containers:
   - name: host-path-pod-bb
     image: busybox

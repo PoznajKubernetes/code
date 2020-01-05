@@ -18,6 +18,8 @@ echo $(date) Hello > /DIR/index.html
 
 In windows, you are using Shares in Docker, so make sure that you have drive shared and when using this drive in K8s, always add /DRIVE_LETTER/ before path. And use / instead of \ and /d/ instead of d:\.
 
+If you are using WSL, use normal path, not /mnt/DRIVE/
+
 ```
 mkdir DIR
 echo $(date) Hello > DIR/index.html
