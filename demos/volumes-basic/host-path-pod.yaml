@@ -11,7 +11,7 @@ spec:
       path: /mnt/c/poznajkubernetes/volumes/host-path
   containers:
   - name: host-path-pod-bb
-    image: buxybox
+    image: busybox
     volumeMounts:
     - name: host-path
       mountPath: /pod-empty/
