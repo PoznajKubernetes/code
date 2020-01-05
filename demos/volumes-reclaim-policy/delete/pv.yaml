@@ -11,3 +11,7 @@ spec:
   - ReadWriteOnce
   hostPath:
     path: "/c/poznajkubernetes/volumes/delete"
+    # path: "c/Users/PoznajKubernetes/.docker/Volumes/"
+    # on windows, DELETE will not work, as it needs /tmp folder
+    # docker on mac should work however, and minikube too
+    # workaround for this issue is to use default storage class

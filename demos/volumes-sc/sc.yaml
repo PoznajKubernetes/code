@@ -7,4 +7,6 @@ metadata:
 # depending on provisioner, extra properties might need to be
 # set or provided
 provisioner: docker.io/hostpath
-reclaimPolicy: Recycle
+reclaimPolicy: Retain
+# Recycle: The StorageClass "pk-sc" is invalid: reclaimPolicy: 
+# Unsupported value: "Recycle": supported values: "Delete", "Retain"
