@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: pkad-ss
+spec:
+  serviceName: pkad-ss
+  selector:
+    matchLabels:
+      app: pkad-ss
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: pkad-ss
+    spec:
+      containers:
+      - name: pkad-ss
+        image: poznajkubernetes/pkad:blue
+        resources: {}
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 8080
+          initialDelaySeconds: 20
+          timeoutSeconds: 1
+          periodSeconds: 10
+          failureThreshold: 3
