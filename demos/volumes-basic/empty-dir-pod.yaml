@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: empty-pod
+  labels:
+    name: empty-pod
+spec:
+  volumes:
+  - name: empty
+    emptyDir: {}
+  containers:
+  - name: empty-pod-bb
+    image: busybox
+    command: ['sh', '-c', 'echo running! && sleep 3600']
+    volumeMounts:
+    - name: empty
+      mountPath: /pod-empty/
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: empty-pod-pkad
+    image: poznajkubernetes/pkad
+    volumeMounts:
+    - name: empty
+      mountPath: /tmp/empty-pod/
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080

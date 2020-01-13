@@ -1,0 +1,33 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: host-path-pod
+  labels:
+    name: host-path-pod
+spec:
+  volumes:
+  - name: host-path
+    hostPath:
+      path: /c/poznajkubernetes/volumes/host-path
+  containers:
+  - name: host-path-pod-bb
+    image: busybox
+    command: ['sh', '-c', 'echo running! && sleep 3600']
+    volumeMounts:
+    - name: host-path
+      mountPath: /pod-empty/
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+  - name: host-path-pod-pkad
+    image: poznajkubernetes/pkad
+    volumeMounts:
+    - name: host-path
+      mountPath: /tmp/host-path-pod/
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080

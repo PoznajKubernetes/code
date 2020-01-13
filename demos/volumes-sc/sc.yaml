@@ -1,0 +1,12 @@
+kind: StorageClass
+apiVersion: storage.k8s.io/v1
+metadata:
+  name: pk-sc
+# this is a provisioner that is responsible
+# for creating a PersistentVolume for our PersistentVolumeClaim
+# depending on provisioner, extra properties might need to be
+# set or provided
+provisioner: docker.io/hostpath
+reclaimPolicy: Retain
+# Recycle: The StorageClass "pk-sc" is invalid: reclaimPolicy: 
+# Unsupported value: "Recycle": supported values: "Delete", "Retain"

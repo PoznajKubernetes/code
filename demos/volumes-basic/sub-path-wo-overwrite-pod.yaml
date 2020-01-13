@@ -1,0 +1,32 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: subpath-wo-overwrite-cm
+data:
+  appsettings.json: "our config"
+  demo: "this should not be created"
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: subpath-wo-overwrite-pod
+  labels:
+    name: subpath-wo-overwrite-pod
+spec:
+  volumes:
+  - name: cm
+    configMap:
+      name: subpath-wo-overwrite-cm
+  containers:
+  - name: subpath-wo-overwrite-pod-pkad
+    image: poznajkubernetes/pkad
+    volumeMounts:
+    - name: cm
+      mountPath: /usr/bin/appsettings.json # only key specified here will be taken
+      subPath: appsettings.json # updating by cm change does not work
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
