@@ -54,4 +54,21 @@
 
     `docker pull poznajkubernetes/helloapp:build`
 
+
+## 01.07.05 Multistage build w Docker
+
+- Budowanie obrazu w Docker 
+
+    `docker build -t helloapp:build .`
     
+- Historia obrazu w Docker
+
+    `docker history helloapp:build` 
+
+- Lista obrazów w Docker
+
+    `docker images`
+
+- Uruchomienie kontenera w trybie interaktywnym  (opcja `-it`) z mapowaniem portów do lokalnej maszyny http://localhost:8080 (opcja `-p 80:8080`) po zakończeniu działania kontener zostanie usunięty (opcja `--rm`)
+
+    `docker run --rm -it -p 80:8080 helloapp:multi`
