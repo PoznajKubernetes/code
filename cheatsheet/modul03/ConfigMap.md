@@ -175,3 +175,84 @@ spec:
 - Usunięcie poda `pkad` z klastra
 
     `kubectl delete pod pkad`
+    
+## 03.02.09 - ConfigMap - Demo - Wykorzystanie Config Map jako wolumenów
+
+- Plik z konfiguracją poda `pod.yaml`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkad
+  labels:
+    name: pkad
+spec:
+  volumes:
+    - name: cm-t3-v
+      configMap:
+        name: t3cm
+        items:
+          - key: config.toml
+            path: awesome_ini_as_toml.toml
+  containers:
+    - name: pkad
+      image: poznajkubernetes/pkad
+      volumeMounts:
+        - mountPath: /etc/config
+          name: cm-t3-v
+      env:
+        - name: TEST
+          value: Poznaj Kubernetes
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: 8080
+```
+
+- Uruchomienie polecenia wyświetlenia zawartości katalogu `ls /etc/config` w podzie `pkad`  
+
+    `kubectl exec pkad -- ls /etc/config`
+    
+- Uruchomienie polecenia wyświetlenia zawartości pliku `cat /etc/config/awesome_ini_as_toml.toml` w podzie `pkad`  
+
+    `kubectl exec pkad -- cat /etc/config/awesome_ini_as_toml.toml`
+    
+- Plik z konfiguracją poda `pod.yaml`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkad
+  labels:
+    name: pkad
+spec:
+  volumes:
+    - name: cm-t1-v
+      configMap:
+        name: t1cm
+    - name: cm-t3-v
+      configMap:
+        name: t3cm
+        items:
+          - key: config.toml
+            path: awesome_ini_as_toml.toml
+  containers:
+    - name: pkad
+      image: poznajkubernetes/pkad
+      volumeMounts:
+        - name: cm-t3-v
+          mountPath: /etc/configt1
+        - name: cm-t3-v 
+          mountPath: /etc/config
+      env:
+        - name: TEST
+          value: Poznaj Kubernetes
+      resources:
+        limits:
+          memory: "128Mi"
+          cpu: "500m"
+      ports:
+        - containerPort: 8080
+```
