@@ -102,3 +102,32 @@ spec:
       secret:
           secretName: secret-file
 ```
+
+## 03.03.06 - demo prywatne repozytorium
+
+- Logowanie do prywatnego repozytorium `poznajkubernetes.azurecr.io` obrazów Dockera
+
+    `docker login poznajkubernetes.azurecr.io`
+
+- Utworzenie Secretu `regcred` typu `generic` (opcja `--from-file`) z pliku `/home/poznaj/.docker/config.json` (opcja `--type`) o typie `kubernetes.io/dockerconfigjson`
+
+    `kubectl create secret generic regcred --from-file=.dockerconfigjson=/home/poznaj/.docker/config.json --type=kubernetes.io/dockerconfigjson`
+    
+- Plik z konfiguracją poda `pod.yml` z obrazem w prywatnym repozytorium
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo-private-registry
+  labels:
+    name: demo-private-registry
+spec:
+  containers:
+  - name: demo-private-registry
+    image: poznajkubernetes.azurecr.io/pkad/pkad-private:blue
+    resources: {}
+    ports:
+      - containerPort: 8080
+  imagePullSecrets:
+    - name: regcred
+```
