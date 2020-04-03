@@ -52,3 +52,7 @@ spec:
 - Aplikacja poda z pliku `nginix-flex-kv.yml`
 
     `kubectl apply -f nginix-flex-kv.yml`
+
+- Polecenie wyświetla listę podów
+
+    `kubectl get pods`
