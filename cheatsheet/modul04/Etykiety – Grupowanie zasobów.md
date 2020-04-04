@@ -127,8 +127,100 @@ spec:
 
     `kubectl get pods --show-labels -l !run`
     
+## 04.01.05 - Etykiety - Demo - JSONPath
 
+- Plik z konfiguracją poda `pkad.yml`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkad
+spec:
+  terminationGracePeriodSeconds: 45
+  containers:
+  - name: pkad
+    image: poznajkubernetes/pkad
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+```
+
+- Plik z konfiguracją `bb.yaml`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bb
+spec:
+  restartPolicy: Never
+  containers:
+  - name: bb
+    image: busybox
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+
+```
+
+- Utworzenie poda z pliku `pkad.yml`
+
+    `kubectl create -f pkad.yml`
     
+- Pobranie wszystkich podów (opcja `--field-selector`) pobranie na podstawie metadanych zwierających określoną wartość  `sciezka.metadanych=wartość` pobranie wszystkich podów w statusie `Running`
 
+    `kubectl get pods --field-selector status.phase=Running`
 
+- Pobranie wszystkich podów (opcja `--field-selector`) pobranie na podstawie metadanych niezwierających określonej wartości `sciezka.metadanych!=wartość` pobranie wszystkich podów w nie będących statusie `Running`
+
+    `kubectl get pods --field-selector status.phase!=Running`
+
+- Wyciągnięcie listy podów jako reprezentacji `yaml` 
+
+    `kubectl get pods -o jsonpath='{@}'`
     
+- Wyciągnięcie pierwszego elementu z listy podów jako reprezentacji `yaml` 
+
+    `kubectl get pods -o jsonpath='{.items[0]}'`
+    
+- Wyciągnięcie nazwy pierwszego elementu z listy podów
+
+    `kubectl get pods -o jsonpath='{.items[0].metadata.name}'`
+    
+- Wyciągnięcie nazwy wszystkich elementów z listy podów 
+
+    `kubectl get pods -o jsonpath='{.items[*].metadata.name}'`
+    
+- Wyciągnięcie nazwy drugiego elementu z listy podów
+
+    `kubectl get pods -o jsonpath='{.items[1].metadata.name}'`
+
+- Wyciągnięcie nazwy wszystkich elementów z listy podów (każda nazwa w osobnej linijce)
+
+    `kubectl get pods -o jsonpath='{range .items[*]}{.metadata.name}{"\n"}{end}'`
+    
+- Wyciągnięcie nazwy wraz z przestrzenią nazw wszystkich elementów z listy podów (każda nazwa w osobnej linijce)
+
+    `kubectl get pods -o jsonpath='{range .items[*]}{.metadata.name}{"\t"}{.metadata.namespace}{end}'`
+    
+- Wyciągnięcie nazwy podów spełniających warunek `@.spec.terminationGracePeriodSeconds==30` elementu z listy podów
+
+    `kubectl get pods -o jsonpath='{.items[?(@.spec.terminationGracePeriodSeconds==30)].metadata.name}'`
+    
+- Pobranie wszystkich podów posortowanych po polu z metadanych `.status.phase` statusie
+    `kubectl get pods --sort-by=.status.phase`
+
+- Pobranie wszystkich podów posortowanych po polu z metadanych `.metadata.name` nazwie
+    `kubectl get pods --sort-by=.metadata.name`
+
+- Pobranie wszystkich podów posortowanych po polu z metadanych `.metadata.creationTimestamp` dacie utworzenia
+    `kubectl get pods --sort-by=.metadata.creationTimestamp`
+
+- Wypisanie konfiguracji wszystkich podów (opcja `-o yaml`) w postaci `yaml`
+
+    `kubectl get pods -o yaml`
