@@ -165,7 +165,6 @@ spec:
         cpu: "500m"
     ports:
       - containerPort: 8080
-
 ```
 
 - Utworzenie poda z pliku `pkad.yml`
@@ -224,3 +223,36 @@ spec:
 - Wypisanie konfiguracji wszystkich podów (opcja `-o yaml`) w postaci `yaml`
 
     `kubectl get pods -o yaml`
+    
+## 04.02.02 - Adnotacje - Demo
+
+- Plik z konfiguracją `pkad.yaml`
+```yaml
+apiVersion: v1
+kind: Pod
+metadata:
+  name: pkad
+  annotations:
+    contoso.com/author: "Jakub Wędrowycz"
+    contoso.com/repository: "http://github.com/contoso/pkad"
+    contoso.com/support: "support@contoso.com"
+    contoso.com/description: "Simple app showing k8s functionality"
+spec:
+  containers:
+  - name: pkad
+    image: poznajkubernetes/pkad
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 8080
+```
+
+- Wyświetlenie szczegółowego stanu poda `pkad`
+
+    `kubectl describe pod pkad`
+    
+- Wyciągnięcie adnotacji wszystkich elementów z listy podów 
+
+    `kubectl get pods -o jsonpath='{.items[*].metadata.annotations}'`
