@@ -44,4 +44,3 @@ spec:
 - Usunięcie poda `pkad-rs-lc9tn` z klastra
 
     `kubectl delete po pkad-rs-lc9tn`
-    
