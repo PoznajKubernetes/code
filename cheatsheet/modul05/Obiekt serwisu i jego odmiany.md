@@ -157,7 +157,7 @@ spec:
     targetPort: http
 ```
 
-- Plik z konfiguracją poda `svc-clusterip-multi-port.yaml`
+- Plik z konfiguracją serwisu `svc-clusterip-multi-port.yaml`
 ```yaml
 kind: Service
 apiVersion: v1
@@ -180,7 +180,7 @@ spec:
 
 ## 05.02.10
 
-- Plik z konfiguracją poda `svc-nodeport.yaml`
+- Plik z konfiguracją serwisu `svc-nodeport.yaml`
 ```yaml
 kind: Service
 apiVersion: v1
@@ -197,7 +197,7 @@ spec:
     protocol: TCP
 ```
 
-- Plik z konfiguracją poda `svc-nodeport-port.yaml`
+- Plik z konfiguracją serwisu `svc-nodeport-port.yaml`
 ```yaml
 kind: Service
 apiVersion: v1
@@ -217,7 +217,7 @@ spec:
 
 ## 05.02.12
 
-- Plik z konfiguracją poda `svc-nodeport-port.yaml`
+- Plik z konfiguracją serwisu `svc-nodeport-port.yaml`
 ```yaml
 kind: Service
 apiVersion: v1
@@ -240,7 +240,7 @@ spec:
     
 ## 05.02.15
 
-- Plik z konfiguracją poda `endpoint-external.yaml`
+- Plik z konfiguracją serwisu i endpointu `endpoint-external.yaml`
 ```yaml
 kind: Service
 apiVersion: v1
