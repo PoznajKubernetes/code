@@ -5,7 +5,7 @@
 
     `kubectl apply -f pkad-health.yaml`
 
-- Polecenie wyświetla listę podów
+- Polecenie wyświetla listę podów (opcja `-w`) w pętli
 
     `kubectl get po -w`
 
