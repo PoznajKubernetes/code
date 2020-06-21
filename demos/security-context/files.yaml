@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: files
+  labels:
+    name: files
+spec:
+  containers:
+  - name: files
+    image: busybox
+    command: [ "sh", "-c", "sleep 1h" ]
+    securityContext:
+      readOnlyRootFilesystem: true
+    volumeMounts:
+      - mountPath: /logs
+        name: empty
+  volumes:
+    - name: empty
+      emptyDir: {}
