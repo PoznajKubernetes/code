@@ -1,17 +1,18 @@
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
-  name: allow-dns-access
-  namespace: ns-pk
+  name: fix-dns
+  namespace: np-pk
 spec:
   podSelector:
     matchLabels: {}
   policyTypes:
-  - Egress
+    - Egress
   egress:
-  - to:
-    - namespaceSelector:
-        matchLabels:
-          pkad: allow
-    ports:
-    - protocol: UDP
+  - ports:
+    - port: 53
+      protocol: UDP
+    - port: 53
+      protocol: TCP
+    to:
+    - namespaceSelector: {}

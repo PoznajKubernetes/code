@@ -6,14 +6,14 @@ metadata:
     app: sidecar
 spec:
   containers:
-    - name: nginx
+    - name: main
       image: nginx
       volumeMounts:
         - name: shared-logs
           mountPath: /var/log/nginx
     - name: sidecar
       image: busybox
-      command: ["sh","-c","while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 30; done"]
+      command: ["sh","-c","while true; do cat /var/log/nginx/access.log /var/log/nginx/error.log; sleep 5; done"]
       volumeMounts:
         - name: shared-logs
           mountPath: /var/log/nginx
