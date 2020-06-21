@@ -1,0 +1,17 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: ambassador
+  labels:
+    app: ambassador
+spec:
+  containers:
+  - image: poznajkubernetes/generator
+    name: generator
+    env:
+    - name: LOG_URL
+      value: http://localhost:9898
+    ports:
+    - containerPort: 8080
+  - image: poznajkubernetes/ambassador
+    name: ambassador

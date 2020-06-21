@@ -1,0 +1,11 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    app: helloapp-ns-pod
+spec:
+  containers:
+  - name: helloapp-ns-pod
+    image: poznajkubernetes/helloapp:svc
+    ports:
+    - containerPort: 8080

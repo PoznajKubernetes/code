@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: adapter
+  labels:
+    app: adapter
+spec:
+  containers:
+  - image: poznajkubernetes/generator
+    name: generator
+    env:
+    - name: LOG_FILE
+      value: /logs/generator.log
+    ports:
+    - containerPort: 8080
+    volumeMounts:
+    - mountPath: /logs
+      name: log-volume
+  - image: poznajkubernetes/exporter
+    name: adapter
+    env:
+    - name: LOG_FILE
+      value: /logs/generator.log
+    ports:
+    - containerPort: 9898
+    volumeMounts:
+    - mountPath: /logs
+      name: log-volume
+  volumes:
+  - name: log-volume
+    emptyDir: {}
